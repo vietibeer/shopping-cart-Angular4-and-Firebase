@@ -25,13 +25,13 @@ export class CheckOutComponent implements OnInit, OnDestroy {
     private shoppingCartService: ShoppingCartService,
     private orderService: OrderService,
     private authService: AuthService
-  ) {  
-    this.getCart() 
+  ) {
+    this.getCart()
   }
 
   ngOnInit() {
     this.initForm()
-    this.getUser()  
+    this.getUser()
   }
 
   initForm() {
@@ -48,28 +48,28 @@ export class CheckOutComponent implements OnInit, OnDestroy {
       return;
     }
 
-    let order = new Order(this.userId, this.formPlaceOrder.value, this.cart)  
-    console.log(order); 
+    let order = new Order(this.userId, this.formPlaceOrder.value, this.cart)
+    console.log(order);
     // let undoObjectShoppingCart = order.shoppingCart
     delete order.shoppingCart
     let result = await this.orderService.store(order)
     this.router.navigate(['/order-success', result.key])
   }
 
-   getCart() {
-    let getCart = this.shoppingCartService.getCart().then(data => {
-      data.subscribe(res => { 
+  getCart() {
+    this.shoppingCartService.getCart().then(data => {
+      data.subscribe(res => {
         let items = new ShoppingCart(res.items)
         this.cart = items
-        console.log(this.cart); 
+        console.log(this.cart);
       }, err => {
-        console.log(err); 
+        console.log(err);
       })
     }).catch(err => {
       console.log(err);
-      
+
     })
-    
+
   }
 
   getUser() {
