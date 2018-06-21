@@ -1,0 +1,41 @@
+<div class="row">
+  <div class="col-md-6">
+    <form [formGroup]="formPlaceOrder" (ngSubmit)="placeOrder()">
+      
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" formControlName="name" name="name" id="name" class="form-control">
+        <div class="showError">
+          <div class="form-control-feedback" *ngIf="formPlaceOrder.get('name').touched && formPlaceOrder.get('name').invalid">Name is required.</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="address1">Address</label>
+        <input type="text" formControlName="address1" name="address1" id="address1" class="form-control" placeholder="Line 1">
+        <div class="showError">
+          <div class="form-control-feedback" *ngIf="formPlaceOrder.get('address1').touched && formPlaceOrder.get('address1').invalid">Address 1 is required.</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <!-- <label for="title">Name</label> -->
+        <input type="text" formControlName="address2" name="address2" id="address2" class="form-control" placeholder="Line 2">
+        <div class="showError">
+          <div class="form-control-feedback" *ngIf="formPlaceOrder.get('address2').touched && formPlaceOrder.get('address2').invalid">Address 2 is required.</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="city">City</label>
+        <input type="text" formControlName="city" name="title" id="city" class="form-control">
+        <div class="showError">
+          <div class="form-control-feedback" *ngIf="formPlaceOrder.get('city').touched && formPlaceOrder.get('city').invalid">City is required.</div>
+        </div>
+      </div>
+ 
+
+      <button class="btn btn-primery" type="submit" [disabled]="!formPlaceOrder.valid">Place Order</button> 
+    </form>
+  </div>
+  <div class="col-md-6">
+      <app-shopping-cart-summary [cart]="cart"></app-shopping-cart-summary>
+  </div>
+</div>

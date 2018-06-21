@@ -1,0 +1,7 @@
+#showInfo .card {
+    border: 7px solid rgba(0, 0, 0, .125); 
+}
+
+.showError div {
+    color: #dc3545;
+}

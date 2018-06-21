@@ -1,0 +1,15 @@
+<div class="row no-gutters">
+  <div class="col-2">
+    <button (click)="removeFromCart()" class="btn btn-danger">
+      <span>&#x2212;</span>
+    </button>
+  </div>
+  <div class="col text-center">
+    {{quantity}} in cart
+  </div>
+  <div class="col-2">
+    <button (click)="addToCart()" class="btn btn-success">
+      <span>&#x2b;</span>
+    </button>
+  </div>
+</div>

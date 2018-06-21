@@ -1,0 +1,73 @@
+<!-- <a class="btn btn-primary" routerLink="/admin/products/new">New product</a> -->
+<div class="alert alert-primary" role="alert" style="width: 10rem;">
+  <a class="btn btn-primary" [routerLink]="['/admin/products/new']">New product</a>
+</div>
+
+<div id="searchFilter">
+  <input type="text" class="form-control" [(ngModel)]="dataSearch" style="width: 400px;">
+  <button class="btn btn-success" (click)="searchFilter(dataSearch)">Search</button>
+  <button class="btn btn-default" (click)="reset()">Reset</button>
+  <h6>{{ msgSearch }}</h6>
+</div>
+
+<!-- <data-table [item]="items" [itemCount]="itemCount" (reload)="reloadItems($event)">
+  <data-table-column [property]="'title'" [header]="'Title'" [sortable]="true" [resizeable]="true"></data-table-column>
+  <data-table-column [property]="'price'" [header]="'Price'" [sortable]="true" [resizeable]="true">
+    <ng-template let-item="dataProducts">
+        {{dataProducts.price | currency:'USD'}}
+    </ng-template>
+  </data-table-column>
+  <data-table-column [property]="$key" [sortable]="true" [resizeable]="true">
+    <ng-template let-item="dataProducts">
+      <a [routerLink]="['/admin/products/', dataProducts.$key]">Edit</a>
+    </ng-template>
+  </data-table-column>
+</data-table> -->
+
+<ngx-datatable class="material" [rows]="dataProducts" [columns]="[{name:'title'}, {name:'price'}]" [columnMode]="'force'"
+  [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="5">
+  
+  <ngx-datatable-column name="Title" [width]="100"> 
+    <ng-template let-row="row" ngx-datatable-cell-template>
+      {{row.title}}
+    </ng-template>
+  </ngx-datatable-column>
+  <ngx-datatable-column name="Price" [width]="100">
+
+    <ng-template let-row="row" ngx-datatable-cell-template>
+      {{row.price | currency:'USD'}}
+    </ng-template>
+  </ngx-datatable-column>
+  <ngx-datatable-column [width]="100">
+
+    <ng-template let-row="row" ngx-datatable-cell-template>
+      <a [routerLink]="['/admin/products/', row.$key]">Edit</a>
+    </ng-template>
+  </ngx-datatable-column>
+
+</ngx-datatable>
+
+<!-- <ngx-datatable class="material" [rows]="dataProducts" [columns]="[{name:'title'}, {name:'price'}]" [columnMode]="'force'"
+  [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="5"></ngx-datatable> -->
+
+
+<!-- <table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Price</th>
+      <th></th>
+      <th>JSON</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let i of dataProducts">
+      <td>{{i.title}}</td>
+      <td>{{i.price | currency:'USD'}}</td>
+      <td>
+        <a [routerLink]="['/admin/products/', i.$key]">Edit</a>
+      </td>
+      <td> {{ dataProducts |json }} </td>
+    </tr>
+  </tbody>
+</table> -->
